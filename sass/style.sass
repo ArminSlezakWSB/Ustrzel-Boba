@@ -1,0 +1,223 @@
+//sass --watch ustrzel_radzika/sass:ustrzel_radzika --style compressed
+@import "variables"
+@import _mixins
+    
+body
+    height: 100vh
+    width: 100vw
+    background: $body_bg
+    background-size: 120% 100%
+    background-blend-mode : darken
+    overflow: hidden
+    position: relative
+    
+    display: flex
+    justify-content: center
+    align-items: center
+.start
+    width: 40vw
+    height: 15vh
+    background: $start_bg
+    background-blend-mode: darken
+    border: 8px solid #726868
+    border-radius: 10px 10px 50% 50%
+    text-align: center
+    //color: darken($white_color, 30)
+    color: transparent
+    font-size: 78px
+    font-weight: 900
+    padding-bottom: 15px
+    font-variant-ligatures: discretionary-ligatures
+    font-family: $font_family
+    letter-spacing: 3px
+    text-shadow: 2px 2px 6px rgba(229, 212, 212, 0.65)
+    box-shadow: 0 12px 12px 0 rgba(25, 18, 18, 0.48)
+    transform: translateY(-70%)
+    transition: .3s ease-in color, .3s ease-in border-color
+.start:hover
+    transform: translateY(-68%)
+    cursor: $cursor_pointer
+    color: darken($white_color, 20)
+    border-color: darken($white_color, 50)
+.information
+    position: absolute
+    top: 50%
+    width: 60%
+    height: 30%
+    margin-left: auto
+    margin-right: auto
+    display: flex
+    justify-content:  space-evenly
+.information figure
+    width: 10vw
+    margin: 0
+.information figure.jumper-window:hover
+    transform: none
+    background: url("img/windowbg1.jpg"),  url("img/score.png") no-repeat bottom right, rgba(23, 16, 16, 0.57)
+    background-blend-mode: saturation
+    background-size: contain
+    cursor: default
+.information figure.extra-jumper:hover
+    transform: none
+    background: url("img/windowbg1.jpg"),  url("img/score.png") no-repeat bottom right, rgba(131, 33, 33, 0.83)
+    background-blend-mode: overlay
+    background-size: contain
+    border-color: rgb(131, 33, 33)
+    cursor: default
+figcaption
+    position: absolute
+    bottom: 30%
+    left: 50%
+    transform: translateX(-150%)
+    width: 20px
+    height: 20px
+    font-size: 52px
+    font-weight: 900
+    font-family: Kristen ITC
+    color: rgb(204, 115, 12)
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.35), 0 0 10px rgb(204, 115, 12)
+    
+.window_container
+    width: 70vw
+    height: 80vh
+    display: flex
+    flex-direction: column
+    
+    transform: translateY(-4%)
+.window_row
+    display: flex
+    flex-flow: row nowrap
+    justify-content: space-evenly
+    
+    width: 100%
+    height: 30%
+    margin-bottom: 2.3%
+    
+    //background: rgba(78, 255, 0, 0.27)
+.window
+    width: $window_width
+    height: $window_height
+    margin: 1.3% 4%
+    border: 10px solid #9b8f8f
+    border-radius: 4px
+    background-blend-mode : darken
+    
+    background: $window_bg
+    background-size: contain
+    
+    //display: inline-block
+    
+    box-shadow: 0 0 20px 2px rgba(25, 22, 22, 0.84)
+    position: relative
+    overflow: hidden
+    cursor: $cursor_pointer
+    
+    transition: ease-in-out .2s all
+
+.window:hover
+    transform: scale(1.06)
+    background: $window-hover_bg
+    background-blend-mode : overlay
+    background-size: contain
+.jumper-window
+    background: url("img/windowbg1.jpg"),  url("img/score.png") no-repeat bottom right, rgba(23, 16, 16, 0.57)
+    background-blend-mode: saturation
+    background-size: contain
+.extra-jumper
+    background: url("img/windowbg1.jpg"),  url("img/score.png") no-repeat bottom right, rgba(131, 33, 33, 0.83)
+    background-blend-mode: overlay
+    background-size: contain
+    border-color: rgb(131, 33, 33)
+.extra-jumper:hover
+    background: url("img/windowbg1.jpg"),  url("img/score.png") no-repeat bottom right, rgba(131, 33, 33, 0.83)
+    background-size: contain
+.timer
+    +partial_dives
+    left: 0
+    //padding-top: 2%
+    //background: rgba(196, 14, 105, 0.84)
+.timer_down
+    color: #c71111
+    -webkit-text-stroke-width: 4px
+    font-size: 86px
+    text-shadow: 2px 0 44px rgba(255, 0, 0, 0.86)
+    animation: time-move 1s ease infinite
+@keyframes time-move
+    from
+        transform: scale(2)
+        opacity: 0
+    to
+        transform: scale(1)
+        opacity: 1
+.score
+    +partial_dives
+    width: 8vw
+    height: 16vh
+    right: 7%
+    //background: rgba(196, 119, 14, 0.84)
+.score::after
+    content: ""
+    position: absolute
+    width: 8vw
+    height: 16vh
+    background: $score-after_bg
+    background-size: 80%
+    //transform: translateY(-10%)
+    
+/*.window::after, .window::before
+    content: " "
+    //transition: linear .5s background
+/*
+    .window:hover::before
+        content: " "
+        position: absolute
+        height: 100%
+        width: 45%
+        background: black 
+    .window:hover::after
+        content: " "
+        position: absolute
+        bottom: 0
+        width: 100%
+        height: 35%
+
+        background: black
+        transform: skewY(30deg) translateY(15px)
+        -ms-transform: skewY(30deg) translateY(15px)
+        -webkit-transform: skewY(30deg) translateY(15px)
+        
+ 
+    .window:hover::before
+        animation: open_window_before 3.5s linear
+    .window:hover::after
+        animation: open_window_after 3.5s linear
+
+    @keyframes open_window_before
+        0%
+            width: 0%
+        20%
+            width: 25%
+        40%
+            width: 40%
+        80%
+            width: 45%
+        100%
+            width: 45%
+    @keyframes open_window_after
+        0%
+            height: 10%
+        20%
+            height: 20%
+        40%
+            height: 30%
+            transform: skewY(25deg) translateY(15px)
+        80%
+            height: 35%
+            transform: skewY(30deg) translateY(15px)
+        100%
+            height: 35%
+            transform: skewY(30deg) translateY(15px)*/
+
+   
+    
+        
